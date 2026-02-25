@@ -81,6 +81,7 @@ git diff main...HEAD --name-only | grep -E '\.(ts|js|tsx|jsx|vue)' | grep -v '\.
 2. **Kjør tester umiddelbart** etter å ha applisert mutasjonen
 3. **Én mutasjon om gangen** – ikke kombiner
 4. **Fokuser på endret kode** – prioriter branch diff
+5. **Vurder kritikalitet** – ikke alle overlevende mutanter krever en test (se under)
 
 ---
 
@@ -124,13 +125,18 @@ Etter fullført mutasjonstesting, lever denne oppsummeringen:
 **Overlevde**: 8
 **Score**: 38 %
 
-### Overlevende mutanter (krever handling)
+### Overlevende mutanter – HØY prioritet (krever test)
 
 | # | Plassering | Original | Mutert | Foreslått test |
 |---|------------|----------|--------|----------------|
 | 1 | linje 65   | `>= 0.5` | `> 0.4` | Test grenseverdi 0.5 |
-| 2 | linje 26   | `=== 'dark'` | `!== 'dark'` | Verifiser DOM-klasse |
-| 3 | linje 28   | `if (error) return` | `if (!error) return` | Test feilhåndteringsvei |
+| 2 | linje 28   | `if (error) return` | `if (!error) return` | Test feilhåndteringsvei |
+
+### Overlevende mutanter – LAV prioritet (ingen handling)
+
+| # | Plassering | Original | Mutert | Begrunnelse |
+|---|------------|----------|--------|-------------|
+| 3 | linje 26   | `=== 'dark'` | `!== 'dark'` | CSS-tema, ikke blokkerende |
 
 ### Drepte mutanter (tester er effektive)
 
