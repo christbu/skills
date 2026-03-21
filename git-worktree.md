@@ -6,3 +6,4 @@ git config extensions.worktreeconfig true
 hooks="$(git rev-parse --git-common-dir)/hooks"
 git config --worktree core.hookspath "$hooks"
 
+
